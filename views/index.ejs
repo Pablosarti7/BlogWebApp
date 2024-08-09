@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("partials/header.ejs") %>
+
+    <body>
+        <%- include("partials/navigation.ejs") %>
+            <div class="container">
+                <div class="hero">
+                    <div class="sub-hero">
+                    <h1>Just Another Thursday</h1>
+                    </div>
+                </div>
+
+                <div class="section-one">
+                    <div class="subsection-one">
+                        <h2>Archives</h2>
+                        <% if (Object.keys(blog).length> 0) { %>
+                            <% for (let key in blog) { %>
+                                <div>
+                                    <a href="/blog/<%= key %>">
+                                        <p class="date">
+                                            <%= blog[key].date %>
+                                        </p>
+                                        <h3>
+                                            <%= blog[key].name %>
+                                        </h3>
+                                    </a>
+                                </div>
+                                <hr>
+                                <% } %>
+                                    <% } else { %>
+                                        <h3>No posts at this moment.</h3>
+                                        <% } %>             
+                    </div>
+                </div>
+
+
+                <div class="section-two">
+                    <div class="subsection-two">
+                        <h2>Submit a New Post</h2>
+                        <form action="/submit-post" method="POST">
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" required>
+
+                            <label for="content">Content:</label>
+                            <textarea id="content" name="content" rows="2" required></textarea>
+
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <%- include("partials/footer.ejs") %>
+    </body>
+
+</html>
